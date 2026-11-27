@@ -18,7 +18,34 @@
 
 class Wallet {
   // ваш код здесь
+  #money = 0
+
+  constructor(owner) {
+    this.owner = owner
+  }
+
+
+  get money() {
+    return this.#money
+  }
+
+  add(amount ){
+    if (amount <= 0){
+      throw new Error("Сумма должна быть положительной")
+    }
+    this.#money += amount
+    return this.#money
+  }
+
+  spend(amount){
+    if (this.money - amount < 0) {
+      throw new Error('Не хватает денег')
+    }
+    this.#money -= amount
+    return this.#money
+  }
 }
+  
 
 // ===== Проверки — не меняйте код ниже =====
 const show = v => JSON.stringify(v, (k, x) => (x === undefined ? 'undefined' : x));
