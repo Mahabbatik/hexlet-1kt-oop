@@ -18,27 +18,38 @@
 class Employee {
   constructor(name) {
     // сохраните name
+    this.name = name
   }
 
-  salary() {
-    return 0; // должно быть 60000
-  }
+salary() {
+  return 60000; // должно быть 60000
+}
 
-  describe() {
+describe() {
     // `${имя}: ${зарплата} ₽` — зарплату получите через this.salary()
-  }
+  return `${this.name}: ${this.salary()} ₽`
+}
 }
 
 class Manager extends Employee {
   // конструктор (name, bonus) и salary(): super.salary() + премия
+  constructor(name, bonus) {
+    super(name)
+    this.bonus = bonus
 }
-
+salary() {
+    return super.salary() + this.bonus
+  }
+}
 class Intern extends Employee {
   // salary(): 20000
+salary() {
+  return 20000}
 }
 
 function totalSalary(employees) {
   // сумма salary() всех сотрудников
+  return employees.reduce((sum, e) => sum + e.salary(), 0)
 }
 
 // ===== Проверки — не меняйте код ниже =====
