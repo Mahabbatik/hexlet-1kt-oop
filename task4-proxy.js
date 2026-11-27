@@ -24,7 +24,8 @@ function withDefaults(target, defaults) {
   return new Proxy(target, {
     get(target, prop) {
       // ваш код здесь
-    },
+
+      return prop in target ? target[prop] : defaults[prop];}
   });
 }
 
@@ -32,7 +33,12 @@ function onlyPositive(target) {
   return new Proxy(target, {
     set(target, prop, value) {
       // ваш код здесь
-    },
+      if (typeof value === 'number' && value > 0) {
+        target[prop] = value;
+        return true
+      }
+      return false
+    }
   });
 }
 
