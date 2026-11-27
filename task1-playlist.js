@@ -17,6 +17,25 @@
 'use strict';
 
 // ваш код здесь
+const playlist = {
+  tracks: [],
+  add(title, artist) {
+    this.tracks.push({title, artist})
+  },
+
+  count() {
+    return this.tracks.length
+  },
+
+  byArtist(artist) {
+    return this.tracks.filter(t => t.artist === artist).map(t => t.title)
+  },
+
+  clear() {
+    this.tracks = []
+  }
+}
+
 
 
 
